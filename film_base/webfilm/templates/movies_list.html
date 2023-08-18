@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            tytuł: {{ movie.title }},
+            rok: {{ movie.year }},
+            scenażysta: {{ movie.screenplay }},
+            reżyser: {{ movie.director.last_name }},
+            aktorzy:
+            <ul>
+                {% for actor in movie.starring.all %}
+                <li>{{ actor }}</li>
+                {% endfor %}
+            </ul>
+            rating: {{ movie.rating }}
+            <br>
+            gatunki:
+            <ul>
+                {% for genre in movie.genres.all %}
+                <li>{{ genre }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

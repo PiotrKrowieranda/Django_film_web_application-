@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Tytuł strony{% endblock %}</title>
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #dbe4f0; /* Slightly navy blue background color of the entire page */
+        color: #30344D;
+    }
+
+    #menu {
+        background-color: #30344D;
+        padding: 10px;
+        border-radius: 5px; /* Rounded corners for the menu */
+    }
+
+    #menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    #menu li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    #menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    #menu a:hover {
+        /*background-color: #555;*/
+        color: #ffc107; /* Gold text color when hovered */
+    }
+
+    #menu a:hover::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #ffc107; /* Gold underline effect */
+    }
+
+    #content {
+        margin: 20px;
+    }
+
+    #footer {
+        background-color: #30344D;
+        color: #ffc107;
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* Styling links on the page */
+    a {
+        color: #30344D; /* Font color for links */
+        text-decoration: none; /* Remove underline for links */
+        box-shadow: 0 1px 2px #ffc107; /* Light shadow on links */
+        transition: box-shadow 0.3s ease; /* Shadow transition effect */
+        border-radius: 5px; /* Rounded corners for links */
+    }
+
+    /* Styling links on hover */
+    a:hover {
+        color: #ffc107; /* Gold font color on hover */
+        box-shadow: 0 2px 4px #ffc107; /* Enhanced shadow on hover */
+    }
+
+    /* Styling buttons */
+    input[type='submit'],
+    button {
+        background-color: #30344D; /* Background color for buttons */
+        color: #fff; /* Font color for buttons */
+        border: none; /* Remove border for buttons */
+        padding: 8px 16px; /* Add padding for buttons */
+        cursor: pointer; /* Change cursor on hover over buttons */
+        border-radius: 5px; /* Rounded corners for buttons */
+    }
+
+    /* Styling buttons on hover */
+    input[type='submit']:hover,
+    button:hover {
+        background-color: #ffc107; /* Gold background color on hover */
+        box-shadow: 0 4px 6px #ffc107; /* Enhanced shadow on hover */
+    }
+</style>
+</head>
+<body>
+    <div id="menu">
+
+        <ul>
+            <li><a href="/movies/">Movie list</a></li>
+            <li><a href="/persons/">List of persons</a></li>
+            <li><a href="/search_movie/">Film search</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div id="footer">
+        <!-- Tutaj umieszczamy kod dla stopki strony -->
+        &copy; 2023 film base
+    </div>
+</body>
+</html>

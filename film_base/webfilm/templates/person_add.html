@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+<!--{% block title %}Lista filmów{% endblock %}-->
+
+{% block content %}
+
+<h1>Dodawanie Osoby</h1>
+
+    <form method="POST">
+      {% csrf_token %}
+        <label>
+            first name:
+            <input type="text"
+               name="first_name"
+                value="{{ person.first_name }}">
+        </label>
+        <br>
+        <label>
+            last name:
+            <input type="text"
+               name="last_name"
+                value="{{ person.last_name }}">
+        </label>
+
+        <label>
+        <input type="submit" value="zapisz dane">
+        </label>
+    </form>
+{% endblock %}
+</body>
+</html>

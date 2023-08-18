@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Movie</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+<!--{% block title %}Search Movie{% endblock %}-->
+
+{% block content %}
+
+    <h4>Search Movie</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label>First name director:</label>
+            <input type="text" name="director_first_name">
+        </div>
+        <div>
+            <label>Last name director:</label>
+            <input type="text" name="director_last_name">
+        </div>
+        <div>
+            <label>First name screenplay:</label>
+            <input type="text" name="screenplay_first_name">
+        </div>
+        <div>
+            <label>Last name screenplay:</label>
+            <input type="text" name="screenplay_last_name">
+        </div>
+          <div>
+            <label>First name actor:</label>
+            <input type="text" name="actor_first_name">
+        </div>
+        <div>
+            <label>Last name actor:</label>
+            <input type="text" name="actor_last_name">
+        </div>
+        <div>
+            <label>Year From:</label>
+            <input type="number" name="year_from">
+        </div>
+        <div>
+            <label>Year To:</label>
+            <input type="number" name="year_to">
+        </div>
+        <div>
+            <label>Genre:</label>
+            <input type="text" name="genre">
+        </div>
+        <div>
+            <label>Rating From:</label>
+            <input type="number" name="rating_from">
+        </div>
+        <div>
+            <label>Rating To:</label>
+            <input type="number" name="rating_to">
+        </div>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if messages %}
+    {% for message in messages %}
+    <h4>{{ message }}</h4>
+    {% endfor %}
+    {% endif %}
+
+    {% if movies %}
+        <h4>Search Results:</h4>
+        <ul>
+            {% for movie in movies %}
+            <li>
+            tytuł: {{ movie.title }},
+            rok: {{ movie.year }},
+            scenażysta: {{ movie.screenplay.first_name }} {{ movie.screenplay.last_name }},
+            reżyser: {{ movie.director.first_name }} {{ movie.director.last_name }},
+            aktorzy:
+            <ul>
+                {% for actor in movie.starring.all %}
+                <li> {{ actor.first_name }} {{ actor.last_name }}</li>
+                {% endfor %}
+            </ul>
+            rating: {{ movie.rating }}
+                <br>
+            gatunki:
+            <ul>
+                {% for genre in movie.genres.all %}
+                <li>{{ genre.name }}</li>
+                {% endfor %}
+            </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+</body>
+</html>
+

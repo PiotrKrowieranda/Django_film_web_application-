@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja Filmu</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+<!--{% block title %}Lista filmów{% endblock %}-->
+
+{% block content %}
+
+    <h1>Film Editing</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>
+            Title:
+            <input type="text" name="title" value="{{ movie.title }}"">
+        </label>
+        <br>
+        <label>
+            Year:
+            <input type="text" name="year" value="{{ movie.year }}">
+        </label>
+        <br>
+        <label>
+            ID screenplay:
+            <input type="text" name="screenplay" value="{{ movie.screenplay.id }}">
+        </label>
+        <br>
+        <label>
+            ID director:
+            <input type="text" name="director" value="{{ movie.director.id }}">
+        </label>
+        <br>
+        <label>
+            Actors ID (comma separated):
+        <input type="text" name="starring" value="{% for actor in movie.starring.all %}{{ actor.id }},{% endfor %}">
+        </label>
+        <br>
+        <label>
+        Genres (enter genres separated by commas):
+        <input type="text" name="genres" value="{% for genre in movie.genres.all %}{{ genre.name }},{% endfor %}">
+        </label>
+        <br>
+        <label>
+            Rating:
+            <input type="text" name="rating" value="{{ movie.rating }}">
+        </label>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+
+{% endblock %}
+</body>
+</html>

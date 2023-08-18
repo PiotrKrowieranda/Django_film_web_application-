@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+Deleting Film
+
+{% block content %}
+
+    <h1>Deleting a Person</h1>
+    <form method="POST" action="/del_person/{{ person.pk }}">
+        {% csrf_token %}
+        <ul>
+            <li>
+                first_name : {{ person.first_name }},
+                last_name: {{ person.last_name }}
+            </li>
+        </ul>
+        <br>
+        <button type="submit">Delete</button>
+    </form>
+{% endblock %}
+</body>
+</html>
+
+
+
+
+

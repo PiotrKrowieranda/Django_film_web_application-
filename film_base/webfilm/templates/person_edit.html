@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+
+<!--{% block title %}   Edycja postaci<       {% endblock %}-->
+<h1> Edycja postaci</h1>
+{% block content %}
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <ul>
+            <li>
+                Osoba: {{ person.0.first_name }} {{ person.0.last_name }}
+            </li>
+        </ul>
+        <label>
+            First name:
+            <input type="text" name="first_name" value="{{ person.0.first_name }}">
+        </label>
+        <br>
+        <label>
+            Last name:
+            <input type="text" name="last_name" value="{{ person.0.last_name }}">
+        </label>
+        <br>
+        <input type="submit" value="Zmień dane">
+    </form>
+{% endblock %}
+</body>
+</html>

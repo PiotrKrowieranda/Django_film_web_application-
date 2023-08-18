@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+<!--{% block title %}Dodawanie Filmu{% endblock %}-->
+
+{% block content %}
+
+    <h1>Adding Movie</h1>
+    <form method="POST">
+    {% csrf_token %}
+    <label>
+        Tytuł:
+        <input type="text" name="title">
+    </label>
+    <br>
+    <label>
+        Year:
+        <input type="text" name="year">
+    </label>
+    <br>
+    <label>
+        Screenplayer ID from people list:
+        <input type="text" name="screenplay">
+    </label>
+    <br>
+    <label>
+        Director ID from people list:
+        <input type="text" name="director">
+    </label>
+    <br>
+    <label>
+        Rating:
+        <input type="text" name="rating">
+    </label>
+    <br>
+    <label>
+        Actors ID from people list (comma separated):
+        <input type="text" name="starring">
+    </label>
+    <br>
+    <label>
+        Genres (enter genres separated by commas):
+        <input type="text" name="genres">
+    </label>
+    <br>
+    <button type="submit">Dodaj</button>
+    </form>
+
+{% endblock %}
+</body>
+</html>
+

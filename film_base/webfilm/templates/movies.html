@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+{% extends 'base.html' %}
+
+Add Film
+
+{% block content %}
+
+<h1>List of Movies</h1>
+
+
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div>
+        <button type="submit" name="sort_option" value="0">Sort by default</button>
+        <button type="submit" name="sort_option" value="1">Sort descending by grades</button>
+        <button type="submit" name="sort_option" value="2">Sort ascending by grades</button>
+
+    </div>
+
+    <ul>
+        {% for movie in movies %}
+        <li>
+            title: {{ movie.title }},
+            year: {{ movie.year }},
+            screenwriter: {{ movie.screenplay.first_name }} {{ movie.screenplay.last_name }},
+            director: {{ movie.director.first_name }} {{ movie.director.last_name }},
+           actors:
+            <ul>
+                {% for actor in movie.starring.all %}
+                <li> {{ actor.first_name }} {{ actor.last_name }}</li>
+                {% endfor %}
+            </ul>
+            rating: {{ movie.rating }}
+            <br>
+            genres:
+            <ul>
+                {% for genre in movie.genres.all %}
+                <li>{{ genre.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <a href="/edit-movie/{{ movie.id }}">Edit</a>
+        <a href="/del_movie/{{ movie.pk }}">Delete</a>
+        {% endfor %}
+    </ul>
+    <a href="/add-movie/">Add film</a>
+</form>
+
+{% endblock %}
+</body>
+</html>

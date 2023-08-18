@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+Deleting Film
+
+{% block content %}
+
+    <h1>Deleting Film</h1>
+    <form method="POST" action="/del_movie/{{ movie.id }}">
+
+        {% csrf_token %}
+        <ul>
+            <li>
+            title: {{ movie.title }},
+            year: {{ movie.year }},
+            screenplay: {{ movie.screenplay.first_name }} {{ movie.screenplay.last_name }},
+            director: {{ movie..first_name }} {{ movie.director.last_name }},
+            actors:
+            <ul>
+                {% for actor in movie.starring.all %}
+                <li> {{ actor.first_name }} {{ actor.last_name }}</li>
+                {% endfor %}
+            </ul>
+            rating: {{ movie.rating }},
+            genres:
+            <ul>
+                {% for genre in movie.genres.all %}
+                <li>{{ genre.name }}</li>
+                {% endfor %}
+            </ul>
+            </li>
+        </ul>
+
+        <br>
+        <button type="submit">Delete</button>
+    </form>
+{% endblock %}
+</body>
+
+</html>
+
