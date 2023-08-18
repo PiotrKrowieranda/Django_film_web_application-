@@ -5,6 +5,9 @@
 # The application also supports adding and managing information about people involved in movie production, such as directors,
 # screenwriters, and actors.
 
+# Note For the user of this application: it is best to start creating a movie database by creating a list of persons: directors,
+# writers and actors, and then a list of movies, because person are added to movies
+
 
 from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -51,6 +54,7 @@ def search_movie(request):
         actor_last_name = request.POST.get('actor_last_name')
 
         # Initialize movies queryset
+
         movies = Movie.objects.all()
         any_filter_applied = False  # Initialize flag to track if any filter is applied
 
@@ -104,10 +108,11 @@ def search_movie(request):
             "any_filter_applied": any_filter_applied
         }
 
-        # Check if any movies were found
+
         if not any_filter_applied:
             messages.info(request, "Please enter search criteria.")
-            messages.info(request, "list of all movies")
+            return render(request, "search_movie.html")
+
         # Check if any movies were found
         if not movies.exists():
             messages.info(request, "No movies found matching the search criteria.")
