@@ -21,6 +21,9 @@ from webfilm.views import show_movies_template, edit_movies, add_movie, \
     search_movie, del_movie, del_person
 
 
+
+
+
 urlpatterns = [
     path('movies/', show_movies_template, name='movies'),
     path('edit-movie/<int:id>/', edit_movies, name='edit_movie'),

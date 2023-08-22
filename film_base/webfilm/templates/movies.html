@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -7,6 +8,8 @@
 Add Film
 
 {% block content %}
+
+{% load static %}
 
 <h1>List of Movies</h1>
 
@@ -49,13 +52,20 @@ Add Film
                 {% endfor %}
             </ul>
         </li>
-        <a href="/edit-movie/{{ movie.id }}">Edit</a>
-        <a href="/del_movie/{{ movie.pk }}">Delete</a>
+        <a class="tooltip" data-text="redirect to edit a this film" href="/edit-movie/{{ movie.id }}">Edit</a>
+        <a class="tooltip" data-text="redirect to delete this film" href="/del_movie/{{ movie.pk }}">Delete</a>
         {% endfor %}
     </ul>
-    <a href="/add-movie/">Add film</a>
+    <a class="tooltip" data-text="redirect to the films making page" href="/add-movie/">Add film</a>
 </form>
 
+
+
+<script src="{% static 'app.js' %}"></script>
+
 {% endblock %}
+
 </body>
+
+
 </html>
