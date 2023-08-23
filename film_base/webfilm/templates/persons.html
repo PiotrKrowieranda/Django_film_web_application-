@@ -10,6 +10,8 @@
 
 {% block content %}
 
+{% load static %}
+
     <h1>List of Persons</h1>
 
 
@@ -20,15 +22,18 @@
              Id: {{ person.id }}<br>
              {{ person.first_name }} {{ person.last_name }}
                 <ul>
-                    <li><a href="/edit-person/{{ person.pk }}">edit person</a></li>
-                    <li><a href="/del_person/{{ person.pk }}">del person</a></li>
+                    <li><a class="tooltip" data-text="redirect to edit a this person" href="/edit-person/{{ person.pk }}">edit person</a></li>
+                    <li><a class="tooltip" data-text="redirect to delete a this person" href="/del_person/{{ person.pk }}">del person</a></li>
                 </ul>
             </li>
             {% endfor %}
         </ul>
 
-        <a href="/add-person/">Add a new person</a>
+        <a class="tooltip" data-text="redirect to the person making page" href="/add-person/">Add a new person</a>
     </form>
+
+<script src="{% static 'app.js' %}"></script>
+
 {% endblock %}
 </body>
 </html>
